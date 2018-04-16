@@ -16,13 +16,36 @@ SPIDER_MODULES = ['umei.spiders']
 NEWSPIDER_MODULE = 'umei.spiders'
 
 
-LOG_FILE = "H:\\python_workspace\\scrapy\\umei\\UmeiSpider.log"
-LOG_LEVEL = "DEBUG"
+# LOG_FILE = "H:\\python_workspace\\scrapy\\umei\\UmeiSpider.log"
+# LOG_LEVEL = "DEBUG"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-USER_AGENT = "Mozilla/5.0 (X11; Linux i686; U;) Gecko/20070322 Kazehakase/0.4.5"
+#USER_AGENT = "Mozilla/5.0 (X11; Linux i686; U;) Gecko/20070322 Kazehakase/0.4.5"
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+
+#user-agent 集合
+USER_AGENTS=[
+    "Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET CLR 2.0.50727; Media Center PC 6.0)",
+    "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; WOW64; Trident/4.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; .NET CLR 1.0.3705; .NET CLR 1.1.4322)",
+    "Mozilla/4.0 (compatible; MSIE 7.0b; Windows NT 5.2; .NET CLR 1.1.4322; .NET CLR 2.0.50727; InfoPath.2; .NET CLR 3.0.04506.30)",
+    "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN) AppleWebKit/523.15 (KHTML, like Gecko, Safari/419.3) Arora/0.3 (Change: 287 c9dfb30)",
+    "Mozilla/5.0 (X11; U; Linux; en-US) AppleWebKit/527+ (KHTML, like Gecko, Safari/419.3) Arora/0.6",
+    "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.2pre) Gecko/20070215 K-Ninja/2.1.1",
+    "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9) Gecko/20080705 Firefox/3.0 Kapiko/3.0",
+    "Mozilla/5.0 (X11; Linux i686; U;) Gecko/20070322 Kazehakase/0.4.5",
+]
+
+# 代理ip
+PROXIES = [
+    {'ip_port': '115.223.213.94:9000', 'user_passwd': ''},
+    {'ip_port': '60.214.155.243:53281', 'user_passwd': ''},
+    {'ip_port': '121.232.146.162:9000', 'user_passwd': ''},
+    {'ip_port': '113.116.146.178:9000', 'user_passwd': ''},
+]
+
+
+
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -56,8 +79,9 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    #'umei.middlewares.UmeiDownloaderMiddleware': 543,
+    #'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'umei.middlewares.RandomUserAgent': 301,
+    'umei.middlewares.RandomProxy': 302,
 }
 
 # Enable or disable extensions
